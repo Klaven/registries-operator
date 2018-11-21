@@ -38,7 +38,7 @@ func TestMain(m *testing.M) {
 	var t *envtest.Environment
 
 	if test.ShouldRunIntegrationSetupAndTeardown(m) {
-		t := &envtest.Environment{
+		t = &envtest.Environment{
 			CRDDirectoryPaths: []string{filepath.Join("..", "..", "..", "..", "configs", "crds")},
 		}
 
