@@ -33,6 +33,12 @@ var cfg *rest.Config
 var c client.Client
 
 func TestMain(m *testing.M) {
+
+	if testing.Short() {
+		log.Print("Skippig  integration tests in shot mode")
+		return
+	}
+
 	t := &envtest.Environment{
 		CRDDirectoryPaths: []string{filepath.Join("..", "..", "..", "..", "configs", "crds")},
 	}
