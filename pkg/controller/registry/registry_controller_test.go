@@ -44,7 +44,7 @@ const timeout = time.Second * 5
 
 func TestReconcile(t *testing.T) {
 
-        test.SkipUnlessIntegrationTesting(t)
+	test.SkipUnlessIntegrationTesting(t)
 
 	g := gomega.NewGomegaWithT(t)
 	instance := &kubicv1beta1.Registry{ObjectMeta: metav1.ObjectMeta{Name: "foo", Namespace: "default"}}

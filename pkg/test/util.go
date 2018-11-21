@@ -14,8 +14,9 @@
  * limitations under the License.
  *
  */
- package test
- import (
+package test
+
+import (
 	"flag"
 	"testing"
 )

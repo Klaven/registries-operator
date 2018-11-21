@@ -20,11 +20,11 @@ package v1beta1
 import (
 	"testing"
 
+	"github.com/kubic-project/registries-operator/pkg/test"
 	"github.com/onsi/gomega"
 	"golang.org/x/net/context"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
-	"github.com/kubic-project/registries-operator/pkg/test"
 )
 
 func TestStorageRegistry(t *testing.T) {
