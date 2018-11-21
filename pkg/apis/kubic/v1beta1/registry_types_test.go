@@ -29,7 +29,7 @@ import (
 
 func TestStorageRegistry(t *testing.T) {
 
-	test.SkipIfNotIntegrationTesting(t)
+	test.SkipTestIfShort(t)
 
 	key := types.NamespacedName{
 		Name:      "foo",

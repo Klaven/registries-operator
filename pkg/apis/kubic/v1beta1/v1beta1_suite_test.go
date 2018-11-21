@@ -35,7 +35,7 @@ var c client.Client
 func TestMain(m *testing.M) {
 
 	if testing.Short() {
-		log.Print("Skippig  integration tests in shot mode")
+		log.Print("Skippig  integration tests in short mode")
 		return
 	}
 

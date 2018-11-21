@@ -24,6 +24,7 @@ import (
 	"testing"
 
 	"github.com/kubic-project/registries-operator/pkg/apis"
+	"github.com/kubic-project/registries-operator/pkg/test"
 	"github.com/onsi/gomega"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
@@ -36,9 +37,9 @@ var cfg *rest.Config
 
 func TestMain(m *testing.M) {
 
-        if  testing.Short() {
-	         return
-	}
+        test.SkipSetupIfShort(m)
+
+	log.Print("Still here")
 
 	t := &envtest.Environment{
 		CRDDirectoryPaths: []string{filepath.Join("..", "..", "..", "config", "crds")},
