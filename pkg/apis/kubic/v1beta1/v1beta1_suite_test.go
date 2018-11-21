@@ -23,6 +23,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/kubic-project/registries-operator/pkg/test"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -34,10 +35,7 @@ var c client.Client
 
 func TestMain(m *testing.M) {
 
-	if testing.Short() {
-		log.Print("Skippig  integration tests in short mode")
-		return
-	}
+        test.SkipSetupIfShort(m)
 
 	t := &envtest.Environment{
 		CRDDirectoryPaths: []string{filepath.Join("..", "..", "..", "..", "configs", "crds")},
