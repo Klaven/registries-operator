@@ -17,25 +17,20 @@
  package test
  import (
 	"flag"
-	"log"
-	"os"
 	"testing"
 )
 
-// SkipTestIfShort should skip this specific test if we are running with the short flag
-// This is intended for skipping integration tests
-func SkipTestIfShort(t *testing.T) {
+// SkipUnlessIntegrationTesting should skip this specific test if we are not running in integration
+// testing mode
+func SkipUnlessIntegrationTesting(t *testing.T) {
 	if testing.Short() {
-		t.Skip("Skipping tests in short mode")
+		t.SkipNow()
 	}
 }
 
-// SkipSetupIfShort should skip the test setup if we are running with the short flag
-// This is intended for skipping integration tests
-func SkipSetupIfShort(m *testing.M) {
+// ShouldRunIntegrationSetupAndTeardown should skip this specific test if we are not running in
+// integration testing mode
+func ShouldRunIntegrationSetupAndTeardown(m *testing.M) bool {
 	flag.Parse()
-	if testing.Short() {
-		log.Print("Skipping tests in short mode")
-	}
-	os.Exit(0)
+	return !testing.Short()
 }

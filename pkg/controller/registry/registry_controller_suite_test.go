@@ -37,22 +37,26 @@ var cfg *rest.Config
 
 func TestMain(m *testing.M) {
 
-        test.SkipSetupIfShort(m)
+	var t *envtest.Environment
 
-	log.Print("Still here")
+	if test.ShouldRunIntegrationSetupAndTeardown(m) {
+		t := &envtest.Environment{
+			CRDDirectoryPaths: []string{filepath.Join("..", "..", "..", "config", "crds")},
+		}
+		apis.AddToScheme(scheme.Scheme)
 
-	t := &envtest.Environment{
-		CRDDirectoryPaths: []string{filepath.Join("..", "..", "..", "config", "crds")},
-	}
-	apis.AddToScheme(scheme.Scheme)
-
-	var err error
-	if cfg, err = t.Start(); err != nil {
-		log.Fatal(err)
+		var err error
+		if cfg, err = t.Start(); err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	code := m.Run()
-	t.Stop()
+
+	if test.ShouldRunIntegrationSetupAndTeardown(m) {
+		t.Stop()
+	}
+
 	os.Exit(code)
 }
 
